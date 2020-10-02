@@ -1,0 +1,8 @@
+/* Style Sheet */
+
+textarea {
+    resize: vertical;
+    width: 500px;
+    height: 100px;
+    white-space: pre-wrap;
+}
