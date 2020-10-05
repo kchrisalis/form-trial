@@ -15,21 +15,42 @@ let recipeInfo = [];
 document.getElementById("submitBtn").addEventListener("click", submitForm);
 
 function submitForm() {
-    let ing = ingredients ();
+    splitText();
+    let ing = ingFunc();
+    let step = stepFunc();
+    let descrip = descripFunc();
+
     recipeInfo.push({
         recipeName: document.getElementById("recipeName").value,
         mealType: document.getElementById("mealType").value,
         difficulty: document.getElementById("difficulty").value,
         prepTime: document.getElementById("prepTime").value,
         ingredients: ing,
-        steps: document.getElementById("steps").value,
-        description: document.getElementById("description").value
+        steps: step,
+        description: descrip
     });
     console.log(recipeInfo);
+
+    localStorage.setItem("recipes", JSON.stringify(recipeInfo))
 }
 
-function ingredients() {
-    let ingredients = document.getElementById("prepTime").value;
-    let ingredientsArray = ingredients.split("\n");
-    return ingredientsArray;xs
+
+function splitText() {
+    ingFunc = function () {
+        let ingredients = document.getElementById("ingredients").value;
+        let ingredientsArray = ingredients.split("\n");
+        return ingredientsArray;
+    }
+
+    stepFunc = function () {
+        let steps = document.getElementById("steps").value;
+        let stepsArray = steps.split("\n");
+        return stepsArray;
+    }
+
+    descripFunc = function () {
+        let description = document.getElementById("description").value;
+        let descriptionArray = description.split("\n");
+        return descriptionArray;
+    }   
 }
