@@ -40,7 +40,7 @@ function MainRecipe(aRecipe) {
     mrDiv.append(elsR.p);
 
     // Main Recipe Sub Box
-    elsR.div.classList.add("textCont");
+    elsR.div.classList.add("subRecipeMenu");
     elsR.p.classList.add("subP");
     elsR.h3.classList.add("subH3");
 
