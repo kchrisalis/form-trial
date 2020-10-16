@@ -7,70 +7,27 @@ let recipeInfo = [{
     prepTime: "prepTime",
     ingredients: ["i1", "i2", "i3"],
     steps: ["s1", "s2", "s3"],
-    description: "description"
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
 }];
 
 function testing() {
-document.getElementById('testDiv').append(MainRecipe(recipeInfo[0]));
+    document.getElementById('testDiv').append(recipePreview(recipeInfo[0]));
 }
 
-function MainRecipe(aRecipe) {
-    let mrDiv = document.createElement('div');
-    let elsR = {
-        div: document.createElement('div'),
-        title: document.createElement('h1'),
-        h2: document.createElement('h2'),
-        h3: document.createElement('h3'),
-        p: document.createElement('p'),
-        button: document.createElement('button'),
-        ol: document.createElement('ol'),
-        ul: document.createElement('ul')
-    }
+function recipePreview(aRecipe) {
+    let rcDiv = document.createElement('div');
+    rcDiv.classList.add("recipeCard");
 
-    // Main Recipe Container
-    mrDiv.classList.add("mainRecipe");
+    let h2El= document.createElement('h2');
+    h2El.innerHTML = aRecipe.recipeName;
+    rcDiv.append(h2El);
 
-    // Recipe Name
-    elsR.title.innerHTML = `${aRecipe.recipeName}`;
-    elsR.title.classList.add("recipeName");
-    mrDiv.append(elsR.title);
+    let infoDiv = document.createElement('div');
+    infoDiv.innerHTML = `
+    <p><strong>Meal Type: </strong>${aRecipe.mealType}</p>
+    <p><strong>Difficulty: </strong>${aRecipe.difficulty}</p>
+    <p class="pOverflow"><strong>Description: </strong>${aRecipe.description}</p>`
+    rcDiv.append(infoDiv);
 
-    // Quick Description 
-    elsR.p.innerHTML = `${aRecipe.description}`;
-    mrDiv.append(elsR.p);
-
-    // Main Recipe Sub Box
-    elsR.div.classList.add("subRecipeMenu");
-    elsR.p.classList.add("subP");
-    elsR.h3.classList.add("subH3");
-
-    elsR.h3.innerHTML = "Meal Type:";
-    elsR.div.append(elsR.p.innerHTML = `${aRecipe.mealType}`);
-    elsR.h3.innerHTML = "Difficulty:";
-    elsR.div.append(elsR.p.innerHTML = `${aRecipe.difficulty}`);
-    elsR.h3.innerHTML = "Prep Time:";
-    elsR.div.append(elsR.p.innerHTML = `${aRecipe.prepTime}`);
-    elsR.div.append(elsR.button.innerHTML = "Favourite This Recipe");
-    mrDiv.append(elsR.div);
-
-    // Ingredients (unordered)
-    elsR.h2.classList.add("MainRecipeH2");
-    mrDiv.append(elsR.h2.innerHTML = "Ingredients");
-    for (let i = 0; i < aRecipe.ingredients.length; i++) {
-        let li = document.createElement('li');
-        li.innerHTML = `${aRecipe.ingredients[i]}`;
-        elsR.ol.append();
-    }
-    mrDiv.append(elsR.ol);
-
-    // Instructions (ordered)
-    mrDiv.append(elsR.h2.innerHTML = "Instructions");
-    for (let i = 0; i < aRecipe.steps.length; i++) {
-        let li = document.createElement('li');
-        li.innerHTML = `${aRecipe.steps[i]}`;
-        elsR.ul.append();
-    }
-    mrDiv.append(elsR.ul);
-
-    return mrDiv;
+    return rcDiv;
 }
